@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import List from "./List";
 import {addAction} from './actions';
 import {connect} from 'react-redux';
+import List from "./List";
 
 class App extends React.Component {
     render() {
@@ -10,7 +10,7 @@ class App extends React.Component {
         return (
             <div>
                 <label>My List</label>
-                <List/>
+                <List items={this.props.items}/>
                 <form onSubmit={e => {
                     e.preventDefault();
                     this.props.addItem(input.value);
@@ -25,10 +25,15 @@ class App extends React.Component {
         );
     };
 }
+const mapStateToProps = (state) => {
+    return {
+        items: state
+    }
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         addItem: text => dispatch(addAction(text))
     }
 };
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
