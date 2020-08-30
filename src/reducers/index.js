@@ -15,7 +15,14 @@ export const reducer = (state = initialState, action) => {
                             availableQty: --product.availableQty
                         };
                     return product;
-                })
+                }),
+                cart: [
+                    ...state.cart,
+                    {
+                        ...action.payload,
+                        availableQty: 1
+                    }
+                ]
             };
 
         default:
