@@ -22,7 +22,7 @@ export const App = () => {
                     <div>
                         <label>{product.name} - {product.currency}{product.price} x {product.availableQty}</label>
                         <br/>
-                        <button onClick={e => dispatch(addToCartAction(product))}>Add to cart</button>
+                        <button onClick={e => dispatch(addToCartAction(product.name))}>Add to cart</button>
                     </div>
                 )}
             </div>
@@ -35,7 +35,7 @@ export const App = () => {
                         <br/>
                     </div>
                 )}
-                <label>Total: $</label>{cart.reduce(((total, product) => total += product.price * product.availableQty), 0)}
+                <label>Total: $</label>{cart.reduce(((total, product) => total + (product.price * product.availableQty)), 0)}
             </div>
         </div>
     );
