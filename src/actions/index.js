@@ -1,10 +1,8 @@
-export const incrementAction = () => ({
-    type: 'INCREMENT'
+export const showProductsAction = (products) => ({
+    type: 'SHOW_PRODUCTS',
+    payload: products
 });
-export const decrementAction = () => ({
-    type: 'DECREMENT'
-});
-export const addByAmountAction = (amount) => ({
-    type: 'ADD_BY_AMOUNT',
-    payload: amount
+export const addToCartAction = (product) => ({
+    type: 'ADD_TO_CART',
+    payload: product
 });

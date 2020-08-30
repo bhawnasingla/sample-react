@@ -1,13 +1,23 @@
-const initialState = {counter: {value: 0}};
+const initialState = {products: [], cart: []};
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'INCREMENT':
-            return {...state, counter: {value: state.counter.value + 1}};
-        case 'DECREMENT':
-            return {...state, counter: {value: state.counter.value - 1}};
-        case 'ADD_BY_AMOUNT':
-            return {...state, counter: {value: state.counter.value + action.payload}};
+        case 'SHOW_PRODUCTS':
+            return {...state, products: action.payload};
+
+        case 'ADD_TO_CART':
+            return {
+                ...state,
+                products: state.products.map(product => {
+                    if (product.name === action.payload.name && product.availableQty > 0)
+                        return {
+                            ...product,
+                            availableQty: --product.availableQty
+                        };
+                    return product;
+                })
+            };
+
         default:
             return state;
     }
